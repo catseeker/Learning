@@ -47,6 +47,11 @@ len	length of destination buffer
 h	which header index we are interested in
 copies the whole, aggregated header, even if it was delivered in several actual headers piece by piece. Returns -1 or length of the whole header.
 
+(3) Example:
+int result [0,65]
+lws_hdr_copy() gets value -> no-cache
+lws_token_to_string() gets profile -> pragma:
+
 ### 3. lws send by callback
 #### 3.1 lws api function
 (1) /**
@@ -65,4 +70,11 @@ copies the whole, aggregated header, even if it was delivered in several actual 
 LWS_VISIBLE LWS_EXTERN int
 lws_callback_on_writable_all_protocol(const struct lws_context *context,
 				      const struct lws_protocols *protocol);
+### 4. lws get uri
+#### 4.1 lws api function:
+lws_http_get_uri_and_method(wsi, &uri, &uriLen)
 
+#### 4.2 example:
+http://127.0.0.1:7681/event/getPostion?version=1.0&encrypt=tls1.2&token=12345
+
+api gets uri -> /event/getPostion
